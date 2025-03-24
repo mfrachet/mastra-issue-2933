@@ -6,8 +6,12 @@ export default function Home() {
     api: "/api/chat",
   });
 
+  const imgSrc =
+    "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
+
   return (
-    <div>
+    <div className="px-32 py-12">
+      Image to analyze: <img src={imgSrc} alt="Image to analyze" width={300} />
       <ul>
         {messages.map((message, index) => (
           <li key={index}>{message.content}</li>
@@ -19,15 +23,23 @@ export default function Home() {
             experimental_attachments: [
               {
                 name: "Me",
-                url: "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvam9iNjgwLTE2Ni1wLWwxZGJ1cTN2LnBuZw.png",
-                contentType: "image/png",
+                url: imgSrc,
+                contentType: "image/jpeg",
               },
             ],
           })
         }
       >
-        <input type="text" value={input} onChange={handleInputChange} />
-        <button type="submit">Submit</button>
+        <input
+          type="text"
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Some input"
+          className="border border-gray-300 rounded-md p-2 mt-4"
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
+          Submit
+        </button>
       </form>
     </div>
   );
